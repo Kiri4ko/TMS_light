@@ -1,15 +1,15 @@
-import random
+from random import randint
 
 
 class Dice:
-    sides = 6
+
+    def __init__(self, sides: int):
+        self.sides = sides
 
     def get_dice(self):
-        self.random_side = random.randint(1, self.sides)
-        return self.random_side
+        self.random_side = randint(1, self.sides)
+        print(self.random_side)
 
 
-dice_1 = Dice()
-dice_2 = Dice()
-
-print(dice_1.get_dice(), dice_2.get_dice())
+dice_1 = Dice(6)
+dice_1.get_dice()
