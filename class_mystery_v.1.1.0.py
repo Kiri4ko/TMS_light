@@ -1,4 +1,3 @@
-
 from random import shuffle
 
 
@@ -9,35 +8,29 @@ class Mystery:
         self.answer = answer
         self.choices = choices
         shuffle(self.choices)
-        self.score = 0
 
-    def start_quiz(self):
-        print(self.question)
+    def l_choices(self):
         for i in range(len(self.choices)):
-            print(i + 1, self.choices[i], sep=". ")
+            self.choices.insert(i, f"{i + 1}. {self.choices[i]}")
+            self.choices.pop(i + 1)
+        return self.choices
 
-        if self.choices[int(input("Enter the answer number - ")) - 1] == self.answer:
-            print(True)
-        else:
-            self.score = 3
-            print(False)
+    def check(self):
+        return self.choices[int(input("Enter the answer number - ")) - 1][3:] == self.answer
 
+    def __repr__(self):
+        return "\n" + self.question + "\n" + "\n".join(self.l_choices()) + "\n"
 
-total_score = 3 * 3  # one correct answer - 3 points.
 
 q_1 = Mystery(question="The capital of the United States?", answer="Washington",
               choices=["New York", "Washington", "Los Angeles", "Las Vegas"])
-q_1.start_quiz()
-total_score -= q_1.score
 
 q_2 = Mystery("Who was the first man on the moon?", "Neil Armstrong",
               ["Elon Musk", "Richard Branson", "Dmitri Kirichko", "Neil Armstrong"])
-q_2.start_quiz()
-total_score -= q_2.score
 
 q_3 = Mystery("Which curse is unforgivable?", "Crucio",
               ["Riddikulus", "Accio", "Confundo", "Crucio"])
-q_3.start_quiz()
-total_score -= q_3.score
 
-print(f"Your total score: * {total_score} *")
+
+print(q_1, q_2, q_3)
+print(q_1.check(), q_2.check(), q_3.check())
