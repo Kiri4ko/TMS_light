@@ -1,43 +1,46 @@
-
 from random import shuffle
 
 
 class Mystery:
+    points = 0
 
     def __init__(self, question: str, answer: str, choices: list):
         self.question = question
-        self.answer = answer
+        self.__answer = answer
         self.choices = choices
         shuffle(self.choices)
-        self.score = 0
+        self.list_choices()
 
-    def start_quiz(self):
-        print(self.question)
+    def list_choices(self):
         for i in range(len(self.choices)):
-            print(i + 1, self.choices[i], sep=". ")
+            self.choices.insert(i, f"{i + 1}. {self.choices[i]}")
+            self.choices.pop(i + 1)
 
-        if self.choices[int(input("Enter the answer number - ")) - 1] == self.answer:
-            print(True)
+    @property
+    def check(self):
+        if self.choices[int(input("Enter the answer number - ")) - 1][3:] == self.__answer:
+            Mystery.points += 1
+            return True
         else:
-            self.score = 3
-            print(False)
+            return False
+
+    def __repr__(self):
+        return "\n" + self.question + "\n" + "\n".join(self.choices) + "\n" + f"Your points --> {Mystery.points}"
 
 
-total_score = 3 * 3  # one correct answer - 3 points.
-
-q_1 = Mystery(question="The capital of the United States?", answer="Washington",
+q_1 = Mystery(question="The capital of The United States?", answer="Washington",
               choices=["New York", "Washington", "Los Angeles", "Las Vegas"])
-q_1.start_quiz()
-total_score -= q_1.score
 
 q_2 = Mystery("Who was the first man on the moon?", "Neil Armstrong",
               ["Elon Musk", "Richard Branson", "Dmitri Kirichko", "Neil Armstrong"])
-q_2.start_quiz()
-total_score -= q_2.score
 
 q_3 = Mystery("Which curse is unforgivable?", "Crucio",
               ["Riddikulus", "Accio", "Confundo", "Crucio"])
-q_3.start_quiz()
-total_score -= q_3.score
 
-print(f"Your total score: * {total_score} *")
+print(q_1)
+print(q_1.check)
+print(q_2)
+print(q_2.check)
+print(q_3)
+print(q_3.check)
+print(f"Final score --> {Mystery.points} points")
