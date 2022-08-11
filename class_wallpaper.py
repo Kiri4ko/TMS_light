@@ -60,21 +60,24 @@ class Interface:
         door = int(input("Enter the number of doors (if not, enter a zero): "))
         if window > 0:
             for i in range(window):
-                self.room.addWD(float(input(f"Window {i + 1}.\tEnter the window height: ")),
-                                float(input("\t\tEnter the window width: ")),
-                                input("\t\tEnter the window name: ")
-                                )
+                self.room.addWD(
+                    float(input(f"Window {i + 1}.\tEnter the window height: ")),
+                    float(input("\t\tEnter the window width: ")),
+                    input("\t\tEnter the window name: ")
+                )
         if door > 0:
             for i in range(door):
-                self.room.addWD(float(input(f"Door {i + 1}.\t\tEnter the door height: ")),
-                                float(input("\t\tEnter the door width: ")),
-                                input("\t\tEnter the door name: ")
-                                )
+                self.room.addWD(
+                    float(input(f"Door {i + 1}.\t\tEnter the door height: ")),
+                    float(input("\t\tEnter the door width: ")),
+                    input("\t\tEnter the door name: ")
+                )
 
     def roll_paper(self):
-        return self.room.roll_wallpaper(float(input("Enter the width of the wallpaper: ")),
-                                        float(input("Enter the length of the wallpaper: "))
-                                        )
+        return self.room.roll_wallpaper(
+            float(input("Enter the width of the wallpaper: ")),
+            float(input("Enter the length of the wallpaper: "))
+        )
 
     def __repr__(self):
         return str(
