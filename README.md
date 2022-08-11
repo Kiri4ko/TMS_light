@@ -5,3 +5,4 @@
 3. **class_dice.py** - Dice are implemented through a class. The attribute of the sides class is six.
 4. **class_mystery.py** - This class is a quiz. An instance of the class is created and the necessary attributes are specified: question, answer, list of answer choices.
 5. **class_bankacc.py** - This class authenticates the user by pin code.
+6. **class_wallpaper.py** - This class calculates the amount of wallpaper for the room. 
